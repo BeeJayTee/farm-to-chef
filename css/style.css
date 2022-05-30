@@ -1,3 +1,7 @@
+:root {
+  --darkGreen: #23471a;
+}
+
 /******************************************
 /* CSS
 /*******************************************/
@@ -5,6 +9,15 @@
 /* Box Model Hack */
 *{
   box-sizing: border-box;
+}
+
+html {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.container {
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 /* video settings */
@@ -30,7 +43,7 @@
   left: 0px;
   z-index: -98;
   background: rgba(1, 1, 1, 1);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 
@@ -42,4 +55,44 @@
 .logoLink {
   color: white;
   text-align: center;
+  display: block;
+  margin: auto;
+  font-size: 2.5rem;
+  text-decoration: none;
+}
+
+.mainNav {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 25px;
+}
+
+.mainNav ul {
+  position: absolute;
+  display: flex;
+  column-gap: 1.5rem;
+}
+
+.mainNav li {
+  list-style-type: none;
+}
+
+.mainNav li a {
+  color: white;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.headerBox {
+  color: white;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.headerButton {
+  padding: .75rem 2rem;
+  background: white;
+  text-decoration: none;
+  color: var(--darkGreen);
+  border-radius: 1px;
 }
