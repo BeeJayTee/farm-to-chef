@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title>Farm to Chef</title>
 </head>
+
+
+
+
 <body>
     <form action="/farm-inventory" method="POST">
         <label for="productName">Product Name</label>
@@ -30,5 +35,23 @@
         </select>
         <button type="submit">Submit</button>
     </form>
+
+    <div id="inventroyDiv">
+        <h2>Inventory</h2>
+        <ul class="inventoryItems">
+            <% for(const item of inventoryItems) { %>
+                <li class="inventoryItem" id="<%= item._id %>">
+                    <p class="invItemName">Item: <%= item.productName %></p> 
+                    <p class="invItemType">Type: <%= item.productType %></p>
+                    <p>Qty: <span class="invItemQty"><%= item.productQuantity %></span>
+                            <span class="invQtyType"><%= item.quantityType %></span></p>
+                    <button class="editInventoryItem" value='<%= item._id %>'>Edit</button>
+                    <button class="deleteInventoryItem">Delete</button>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <script src="/inventory.js" type="text/javascript"></script>
 </body>
 </html>
