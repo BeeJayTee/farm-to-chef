@@ -3,6 +3,7 @@ const app = express()
 require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient
 const ObjectId = require('mongodb').ObjectId
+const PORT = 3000
 
 const dbHash = process.env.DB_HASH
 const connectionString = `mongodb+srv://BeeJayTee:${dbHash}@ftc.359pd.mongodb.net/?retryWrites=true&w=majority`
@@ -33,8 +34,16 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
                 .catch(err => console.error(err))
         })
 
+        app.post('/farm-inventory', (req, res) => {
+            farmerInventory.insertOne(req.body)
+                .then(result => {
+                    // console.log(result)
+                    res.redirect('/')
+                })
+                .catch(err => console.error(err))
+        })
+
         app.put('/farm-inventory', (req, res) => {
-            console.log(req.body)
             farmerInventory.updateOne(
                 {_id: ObjectId(req.body.id)},
                 {$set: {
@@ -49,20 +58,22 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
             })
         })
 
-
-        app.post('/farm-inventory', (req, res) => {
-            farmerInventory.insertOne(req.body)
-                .then(result => {
-                    // console.log(result)
-                    res.redirect('/')
-                })
-                .catch(err => console.error(err))
+        app.delete('/farmer-inventory', (req, res) => {
+            farmerInventory.deleteOne(
+                {_id: ObjectId(req.body.id)}
+            )
+            .then(response => {
+                res.json(response)
+            })
+            .catch(err => console.error(err))
         })
 
 
 
 
-        app.listen(3000, _ => {
+
+
+        app.listen(process.env.PORT || PORT, _ => {
             console.log('Listening on 3000')
         })
     })

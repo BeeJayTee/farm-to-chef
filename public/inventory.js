@@ -1,3 +1,4 @@
+// EDIT INVENTORY ITEM WORKFLOW
 const editButtons = document.querySelectorAll('.editInventoryItem')
 const invItems = document.querySelectorAll('.inventoryItem')
 
@@ -86,5 +87,25 @@ for (let i=0; i<editButtons.length; i++) {
                     .catch(err => console.error(err))
                 })
             })
+    })
+}
+
+
+
+// DELETE INVENTROY ITEM WORKFLOW
+const deleteButtons = document.querySelectorAll('.deleteInventoryItem')
+for (let i=0; i<deleteButtons.length; i++) {
+    const currentDeleteButton = deleteButtons[i]
+    currentDeleteButton.addEventListener('click', _ => {
+        const valueToDelete = currentDeleteButton.getAttribute('value')
+        fetch('/farmer-inventory', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({id: valueToDelete})
+        })
+        .then(response => {
+            window.location.href = '/'
+        })
+        .cathch(err => console.error(err))
     })
 }

@@ -12,46 +12,52 @@
 
 
 <body>
-    <form action="/farm-inventory" method="POST">
-        <label for="productName">Product Name</label>
-        <input type="text" name="productName" id="productName">
-        <label for="productType">Product Type</label>
-        <select name="productType" id="productType">
-            <option value="">-- Select a Product Type --</option>
-            <option value="produce">Produce</option>
-            <option value="dairy">Dairy</option>
-            <option value="meat">Meat</option>
-            <option value="other">Other</option>
-        </select>
-        <label for="quantity">Quantity</label>
-        <input type="number" name="productQuantity" id="productQuantity">
-        <label for="quantityType">Qunatity Type</label>
-        <select name="quantityType" id="quantityType">
-            <option value="">-- Select a Quantity Type --</option>
-            <option value="pounds">Pounds</option>
-            <option value="kilograms">Kilograms</option>
-            <option value="bunches">Bunches</option>
-            <option value="bags">Bags</option>
-            <option value="each">Each</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+    <section id="mainSection">
+        <div id="mainFormDiv">
+            <h2>Add New Item</h2>
+            <form action="/farm-inventory" method="POST">
+                <label for="productName">Product Name</label>
+                <input type="text" name="productName" id="productName">
+                <label for="productType">Product Type</label>
+                <select name="productType" id="productType">
+                    <option value="">-- Select a Product Type --</option>
+                    <option value="produce">Produce</option>
+                    <option value="dairy">Dairy</option>
+                    <option value="meat">Meat</option>
+                    <option value="other">Other</option>
+                </select>
+                <label for="quantity">Quantity</label>
+                <input type="number" name="productQuantity" id="productQuantity">
+                <label for="quantityType">Qunatity Type</label>
+                <select name="quantityType" id="quantityType">
+                    <option value="">-- Select a Quantity Type --</option>
+                    <option value="pounds">Pounds</option>
+                    <option value="kilograms">Kilograms</option>
+                    <option value="bunches">Bunches</option>
+                    <option value="bags">Bags</option>
+                    <option value="each">Each</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
 
-    <div id="inventroyDiv">
-        <h2>Inventory</h2>
-        <ul class="inventoryItems">
-            <% for(const item of inventoryItems) { %>
-                <li class="inventoryItem" id="<%= item._id %>">
-                    <p class="invItemName">Item: <%= item.productName %></p> 
-                    <p class="invItemType">Type: <%= item.productType %></p>
-                    <p>Qty: <span class="invItemQty"><%= item.productQuantity %></span>
-                            <span class="invQtyType"><%= item.quantityType %></span></p>
-                    <button class="editInventoryItem" value='<%= item._id %>'>Edit</button>
-                    <button class="deleteInventoryItem">Delete</button>
-                </li>
-            <% } %>
-        </ul>
-    </div>
+
+        <div id="inventroyDiv">
+            <h2>Inventory</h2>
+            <ul class="inventoryItems">
+                <% for(const item of inventoryItems) { %>
+                    <li class="inventoryItem" id="<%= item._id %>">
+                        <p class="invItemName">Item: <%= item.productName %></p> 
+                        <p class="invItemType">Type: <%= item.productType %></p>
+                        <p>Qty: <span class="invItemQty"><%= item.productQuantity %></span>
+                                <span class="invQtyType"><%= item.quantityType %></span></p>
+                        <button class="editInventoryItem" value='<%= item._id %>'>Edit</button>
+                        <button class="deleteInventoryItem" value='<%= item._id %>'>Delete</button>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </section>
 
     <script src="/inventory.js" type="text/javascript"></script>
 </body>
