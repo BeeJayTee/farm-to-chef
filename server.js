@@ -35,6 +35,18 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
         app.put('/farm-inventory', (req, res) => {
             console.log(req.body)
+            farmerInventory.updateOne(
+                {_id: ObjectId(req.body.id)},
+                {$set: {
+                    'productName': req.body.productName,
+                    'productType': req.body.productType,
+                    'productQuantity': req.body.productQuantity,
+                    'quantityType': req.body.quantityType
+                }}
+            )
+            .then(response => {
+                res.json(response)
+            })
         })
 
 
