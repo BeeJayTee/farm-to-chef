@@ -27,11 +27,14 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
             
         })
 
-        app.put('/farm-inventory', (req, res) => {
-            console.log(req.body._id)
-            farmerInventory.findOne(ObjectId(req.body._id))
+        app.get('/farm-inventory/:id', (req, res) => {
+            farmerInventory.findOne(ObjectId(req.params.id))
                 .then(result => res.json(result))
                 .catch(err => console.error(err))
+        })
+
+        app.put('/farm-inventory', (req, res) => {
+            console.log(req.body)
         })
 
 
