@@ -28,6 +28,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
             
         })
 
+
+    // farm-inventory
+
         app.get('/farm-inventory/:id', (req, res) => {
             farmerInventory.findOne(ObjectId(req.params.id))
                 .then(result => res.json(result))
@@ -67,6 +70,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
             })
             .catch(err => console.error(err))
         })
+
+
+
+    // login
+    app.get('/login', (req, res) => {
+        res.render('login.ejs')
+    })
 
 
 
