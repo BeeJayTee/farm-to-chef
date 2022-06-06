@@ -22,7 +22,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         app.get('/', (req, res) => {
             farmerInventory.find().toArray()
                 .then(results => {
-                    res.render('index.ejs', { inventoryItems: results })
+                    res.render('inventory.ejs', { inventoryItems: results })
                 })
                 .catch(err => console.error(err))
             
